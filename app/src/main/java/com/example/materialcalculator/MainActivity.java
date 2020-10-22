@@ -13,103 +13,103 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private Button one, two, three, four, five, six, seven, eight, nine, zero, dot, plus, minus, multiply, divide, modulus, clear, equal;
     private TextView screen, outputScreen;
-    private double val1 = Double.NaN;
+    private double val1;
     private double val2;
-
     private char OPERATION;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d("value", String.valueOf(val1));
         findViewByID();
         one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ifErrorOnOutput();
+                removeAnyErrorText();
                 exceedLength();
-                screen.setText(screen.getText().toString() + "1");
+                screen.setText(String.format("%s1", screen.getText().toString()));
             }
         });
 
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ifErrorOnOutput();
+                removeAnyErrorText();
                 exceedLength();
-                screen.setText(screen.getText().toString() + "2");
+                screen.setText(String.format("%s2", screen.getText().toString()));
             }
         });
 
         three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ifErrorOnOutput();
+                removeAnyErrorText();
                 exceedLength();
-                screen.setText(screen.getText().toString() + "3");
+                screen.setText(String.format("%s3", screen.getText().toString()));
             }
         });
 
         four.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ifErrorOnOutput();
+                removeAnyErrorText();
                 exceedLength();
-                screen.setText(screen.getText().toString() + "4");
+                screen.setText(String.format("%s4", screen.getText().toString()));
             }
         });
 
         five.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ifErrorOnOutput();
+                removeAnyErrorText();
                 exceedLength();
-                screen.setText(screen.getText().toString() + "5");
+                screen.setText(String.format("%s5", screen.getText().toString()));
             }
         });
 
         six.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ifErrorOnOutput();
+                removeAnyErrorText();
                 exceedLength();
-                screen.setText(screen.getText().toString() + "6");
+                screen.setText(String.format("%s6", screen.getText().toString()));
             }
         });
 
         seven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ifErrorOnOutput();
+                removeAnyErrorText();
                 exceedLength();
-                screen.setText(screen.getText().toString() + "7");
+                screen.setText(String.format("%s7", screen.getText().toString()));
             }
         });
 
         eight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ifErrorOnOutput();
+                removeAnyErrorText();
                 exceedLength();
-                screen.setText(screen.getText().toString() + "8");
+                screen.setText(String.format("%s8", screen.getText().toString()));
             }
         });
 
         nine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ifErrorOnOutput();
+                removeAnyErrorText();
                 exceedLength();
-                screen.setText(screen.getText().toString() + "9");
+                screen.setText(String.format("%s9", screen.getText().toString()));
             }
         });
 
         zero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ifErrorOnOutput();
+                removeAnyErrorText();
                 exceedLength();
-                screen.setText(screen.getText().toString() + "0");
+                screen.setText(String.format("%s0", screen.getText().toString()));
             }
         });
 
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 exceedLength();
-                screen.setText(screen.getText().toString() + ".");
+                screen.setText(String.format("%s.", screen.getText().toString()));
             }
         });
 
@@ -127,14 +127,14 @@ public class MainActivity extends AppCompatActivity {
                 if (screen.getText().length() > 0) {
                     OPERATION = '%';
                     operation();
-                    if (!check_Int_Or_Not()) {
+                    if (doubleTypeCheck()) {
                         outputScreen.setText(String.valueOf(val1));
                     } else {
                         outputScreen.setText(String.valueOf((int) val1));
                     }
                     screen.setText(null);
                 } else {
-                    outputScreen.setText("Error");
+                    outputScreen.setText(R.string.errorMsg);
                 }
             }
         });
@@ -145,14 +145,14 @@ public class MainActivity extends AppCompatActivity {
                 if (screen.getText().length() > 0) {
                     OPERATION = '+';
                     operation();
-                    if (!check_Int_Or_Not()) {
+                    if (doubleTypeCheck()) {
                         outputScreen.setText(String.valueOf(val1));
                     } else {
                         outputScreen.setText(String.valueOf((int) val1));
                     }
                     screen.setText(null);
                 } else {
-                    outputScreen.setText("Error");
+                    outputScreen.setText(R.string.errorMsg);
                 }
             }
         });
@@ -164,14 +164,14 @@ public class MainActivity extends AppCompatActivity {
                     OPERATION = '-';
                     operation();
                     if (screen.getText().length() > 0)
-                        if (!check_Int_Or_Not()) {
+                        if (doubleTypeCheck()) {
                             outputScreen.setText(String.valueOf(val1));
                         } else {
                             outputScreen.setText(String.valueOf((int) val1));
                         }
                     screen.setText(null);
                 } else {
-                    outputScreen.setText("Error");
+                    outputScreen.setText(R.string.errorMsg);
                 }
             }
         });
@@ -182,14 +182,14 @@ public class MainActivity extends AppCompatActivity {
                 if (screen.getText().length() > 0) {
                     OPERATION = '*';
                     operation();
-                    if (!check_Int_Or_Not()) {
+                    if (doubleTypeCheck()) {
                         outputScreen.setText(String.valueOf(val1));
                     } else {
                         outputScreen.setText(String.valueOf((int) val1));
                     }
                     screen.setText(null);
                 } else {
-                    outputScreen.setText("Error");
+                    outputScreen.setText(R.string.errorMsg);
                 }
             }
         });
@@ -200,14 +200,14 @@ public class MainActivity extends AppCompatActivity {
                 if (screen.getText().length() > 0) {
                     OPERATION = '/';
                     operation();
-                    if (!check_Int_Or_Not()) {
+                    if (doubleTypeCheck()) {
                         outputScreen.setText(String.valueOf(val1));
                     } else {
                         outputScreen.setText(String.valueOf((int) val1));
                     }
                     screen.setText(null);
                 } else {
-                    outputScreen.setText("Error");
+                    outputScreen.setText(R.string.errorMsg);
                 }
             }
         });
@@ -218,14 +218,14 @@ public class MainActivity extends AppCompatActivity {
                 if (screen.getText().length() > 0) {
                     operation();
                     OPERATION = '=';
-                    if (!check_Int_Or_Not()) {
+                    if (doubleTypeCheck()) {
                         outputScreen.setText(String.valueOf(val1));
                     } else {
                         outputScreen.setText(String.valueOf((int) val1));
                     }
                     screen.setText(null);
                 } else {
-                    outputScreen.setText("Error");
+                    outputScreen.setText(R.string.errorMsg);
                 }
             }
         });
@@ -241,14 +241,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private boolean check_Int_Or_Not() {
+    private boolean doubleTypeCheck() {
         Log.d("real value:", String.valueOf(val1));
         Log.d("changed value:", String.valueOf((int) val1));
-        return val1 == (int) val1;
+        return val1 != (int) val1;
 
     }
 
-    private void ifErrorOnOutput() {
+    private void removeAnyErrorText() {
         if (outputScreen.getText().toString().equals("Error")) {
             outputScreen.setText("");
         }
