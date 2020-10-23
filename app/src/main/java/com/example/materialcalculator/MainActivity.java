@@ -23,11 +23,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d("value", String.valueOf(val1));
         findViewByID();
+        setOnClick();
+    }
+
+    private void setOnClick() {
         one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                removeAnyErrorText();
-                exceedLength();
+                checkBeforeDisplay();
                 screen.setText(String.format("%s1", screen.getText().toString()));
             }
         });
@@ -35,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                removeAnyErrorText();
-                exceedLength();
+                checkBeforeDisplay();
                 screen.setText(String.format("%s2", screen.getText().toString()));
             }
         });
@@ -44,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
         three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                removeAnyErrorText();
-                exceedLength();
+                checkBeforeDisplay();
                 screen.setText(String.format("%s3", screen.getText().toString()));
             }
         });
@@ -53,8 +54,7 @@ public class MainActivity extends AppCompatActivity {
         four.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                removeAnyErrorText();
-                exceedLength();
+                checkBeforeDisplay();
                 screen.setText(String.format("%s4", screen.getText().toString()));
             }
         });
@@ -62,8 +62,7 @@ public class MainActivity extends AppCompatActivity {
         five.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                removeAnyErrorText();
-                exceedLength();
+                checkBeforeDisplay();
                 screen.setText(String.format("%s5", screen.getText().toString()));
             }
         });
@@ -71,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
         six.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                removeAnyErrorText();
-                exceedLength();
+                checkBeforeDisplay();
                 screen.setText(String.format("%s6", screen.getText().toString()));
             }
         });
@@ -80,8 +78,7 @@ public class MainActivity extends AppCompatActivity {
         seven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                removeAnyErrorText();
-                exceedLength();
+                checkBeforeDisplay();
                 screen.setText(String.format("%s7", screen.getText().toString()));
             }
         });
@@ -89,8 +86,7 @@ public class MainActivity extends AppCompatActivity {
         eight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                removeAnyErrorText();
-                exceedLength();
+                checkBeforeDisplay();
                 screen.setText(String.format("%s8", screen.getText().toString()));
             }
         });
@@ -98,8 +94,7 @@ public class MainActivity extends AppCompatActivity {
         nine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                removeAnyErrorText();
-                exceedLength();
+                checkBeforeDisplay();
                 screen.setText(String.format("%s9", screen.getText().toString()));
             }
         });
@@ -107,8 +102,7 @@ public class MainActivity extends AppCompatActivity {
         zero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                removeAnyErrorText();
-                exceedLength();
+                checkBeforeDisplay();
                 screen.setText(String.format("%s0", screen.getText().toString()));
             }
         });
@@ -116,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                exceedLength();
+                checkBeforeDisplay();
                 screen.setText(String.format("%s.", screen.getText().toString()));
             }
         });
@@ -124,109 +118,42 @@ public class MainActivity extends AppCompatActivity {
         modulus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (screen.getText().length() > 0) {
-                    OPERATION = '%';
-                    operation();
-                    if (doubleTypeCheck()) {
-                        outputScreen.setText(String.valueOf(val1));
-                    } else {
-                        outputScreen.setText(String.valueOf((int) val1));
-                    }
-                    screen.setText(null);
-                } else {
-                    outputScreen.setText(R.string.errorMsg);
-                }
+                checkBeforeOperation('%');
             }
         });
 
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (screen.getText().length() > 0) {
-                    OPERATION = '+';
-                    operation();
-                    if (doubleTypeCheck()) {
-                        outputScreen.setText(String.valueOf(val1));
-                    } else {
-                        outputScreen.setText(String.valueOf((int) val1));
-                    }
-                    screen.setText(null);
-                } else {
-                    outputScreen.setText(R.string.errorMsg);
-                }
+                checkBeforeOperation('+');
             }
         });
 
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (screen.getText().length() > 0) {
-                    OPERATION = '-';
-                    operation();
-                    if (screen.getText().length() > 0)
-                        if (doubleTypeCheck()) {
-                            outputScreen.setText(String.valueOf(val1));
-                        } else {
-                            outputScreen.setText(String.valueOf((int) val1));
-                        }
-                    screen.setText(null);
-                } else {
-                    outputScreen.setText(R.string.errorMsg);
-                }
+               checkBeforeOperation('-');
             }
         });
 
         multiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (screen.getText().length() > 0) {
-                    OPERATION = '*';
-                    operation();
-                    if (doubleTypeCheck()) {
-                        outputScreen.setText(String.valueOf(val1));
-                    } else {
-                        outputScreen.setText(String.valueOf((int) val1));
-                    }
-                    screen.setText(null);
-                } else {
-                    outputScreen.setText(R.string.errorMsg);
-                }
+                checkBeforeOperation('*');
             }
         });
 
         divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (screen.getText().length() > 0) {
-                    OPERATION = '/';
-                    operation();
-                    if (doubleTypeCheck()) {
-                        outputScreen.setText(String.valueOf(val1));
-                    } else {
-                        outputScreen.setText(String.valueOf((int) val1));
-                    }
-                    screen.setText(null);
-                } else {
-                    outputScreen.setText(R.string.errorMsg);
-                }
+                checkBeforeOperation('/');
             }
         });
 
         equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (screen.getText().length() > 0) {
-                    operation();
-                    OPERATION = '=';
-                    if (doubleTypeCheck()) {
-                        outputScreen.setText(String.valueOf(val1));
-                    } else {
-                        outputScreen.setText(String.valueOf((int) val1));
-                    }
-                    screen.setText(null);
-                } else {
-                    outputScreen.setText(R.string.errorMsg);
-                }
+                checkBeforeOperation('=');
             }
         });
 
@@ -239,6 +166,26 @@ public class MainActivity extends AppCompatActivity {
                 outputScreen.setText("");
             }
         });
+    }
+
+    private void checkBeforeOperation(char c) {
+        if (screen.getText().length() > 0) {
+            OPERATION = c;
+            operation();
+            if (doubleTypeCheck()) {
+                outputScreen.setText(String.valueOf(val1));
+            } else {
+                outputScreen.setText(String.valueOf((int) val1));
+            }
+            screen.setText(null);
+        } else {
+            outputScreen.setText(R.string.errorMsg);
+        }
+    }
+
+    private void checkBeforeDisplay() {
+        removeAnyErrorText();
+        exceedLength();
     }
 
     private boolean doubleTypeCheck() {
@@ -292,7 +239,6 @@ public class MainActivity extends AppCompatActivity {
                     .show();
         }
     }
-
 
     private void operation() {
         if (!Double.isNaN(val1)) {
