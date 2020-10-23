@@ -24,7 +24,7 @@
 
     <string name="ac">AC</string>
     <string name="equal">=</string>
-    
+
     <string name="exceed_length">Exceed Length</string>
     <string name="errorMsg">Error</string>
 </resources>

@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView screen, outputScreen;
     private double val1;
     private double val2;
-    private char OPERATION;
+    private char OPERATOR_TYPE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,88 +30,77 @@ public class MainActivity extends AppCompatActivity {
         one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay();
-                screen.setText(String.format("%s1", screen.getText().toString()));
+                checkBeforeDisplay('1');
             }
         });
 
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay();
-                screen.setText(String.format("%s2", screen.getText().toString()));
+                checkBeforeDisplay('2');
             }
         });
 
         three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay();
-                screen.setText(String.format("%s3", screen.getText().toString()));
+                checkBeforeDisplay('3');
             }
         });
 
         four.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay();
-                screen.setText(String.format("%s4", screen.getText().toString()));
+                checkBeforeDisplay('4');
             }
         });
 
         five.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay();
-                screen.setText(String.format("%s5", screen.getText().toString()));
+                checkBeforeDisplay('5');
             }
         });
 
         six.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay();
-                screen.setText(String.format("%s6", screen.getText().toString()));
+                checkBeforeDisplay('6');
             }
         });
 
         seven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay();
-                screen.setText(String.format("%s7", screen.getText().toString()));
+                checkBeforeDisplay('7');
             }
         });
 
         eight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay();
-                screen.setText(String.format("%s8", screen.getText().toString()));
+                checkBeforeDisplay('8');
             }
         });
 
         nine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay();
-                screen.setText(String.format("%s9", screen.getText().toString()));
+                checkBeforeDisplay('9');
             }
         });
 
         zero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay();
-                screen.setText(String.format("%s0", screen.getText().toString()));
+                checkBeforeDisplay('0');
             }
         });
 
         dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay();
-                screen.setText(String.format("%s.", screen.getText().toString()));
+                checkBeforeDisplay('.');
             }
         });
 
@@ -132,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               checkBeforeOperation('-');
+                checkBeforeOperation('-');
             }
         });
 
@@ -168,10 +157,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void checkBeforeOperation(char c) {
+    private void checkBeforeOperation(char operator) {
         if (screen.getText().length() > 0) {
-            OPERATION = c;
-            operation();
+            if (operator == '=') {
+                operation();
+                OPERATOR_TYPE = operator;
+            } else {
+                OPERATOR_TYPE = operator;
+                operation();
+            }
+
             if (doubleTypeCheck()) {
                 outputScreen.setText(String.valueOf(val1));
             } else {
@@ -183,9 +178,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void checkBeforeDisplay() {
+    private void checkBeforeDisplay(char digit) {
         removeAnyErrorText();
         exceedLength();
+        screen.setText(String.format("%s" + digit, screen.getText().toString()));
     }
 
     private boolean doubleTypeCheck() {
@@ -244,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
         if (!Double.isNaN(val1)) {
             val2 = Double.parseDouble(screen.getText().toString());
 
-            switch (OPERATION) {
+            switch (OPERATOR_TYPE) {
                 case '+':
                     val1 = val1 + val2;
                     break;
