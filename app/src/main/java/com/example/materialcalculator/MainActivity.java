@@ -30,119 +30,119 @@ public class MainActivity extends AppCompatActivity {
         one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay('1');
+                checkBeforeDisplay(getResources().getString(R.string.one));
             }
         });
 
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay('2');
+                checkBeforeDisplay(getResources().getString(R.string.two));
             }
         });
 
         three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay('3');
+                checkBeforeDisplay(getResources().getString(R.string.three));
             }
         });
 
         four.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay('4');
+                checkBeforeDisplay(getResources().getString(R.string.four));
             }
         });
 
         five.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay('5');
+                checkBeforeDisplay(getResources().getString(R.string.five));
             }
         });
 
         six.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay('6');
+                checkBeforeDisplay(getResources().getString(R.string.six));
             }
         });
 
         seven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay('7');
+                checkBeforeDisplay(getResources().getString(R.string.seven));
             }
         });
 
         eight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay('8');
+                checkBeforeDisplay(getResources().getString(R.string.eight));
             }
         });
 
         nine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay('9');
+                checkBeforeDisplay(getResources().getString(R.string.nine));
             }
         });
 
         zero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay('0');
+                checkBeforeDisplay(getResources().getString(R.string.zero));
             }
         });
 
         dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeDisplay('.');
+                checkBeforeDisplay(getResources().getString(R.string.dot));
             }
         });
 
         modulus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeOperation('%');
+                checkBeforeOperation(getResources().getString(R.string.modulus).charAt(0));
             }
         });
 
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeOperation('+');
+                checkBeforeOperation(getResources().getString(R.string.plus).charAt(0));
             }
         });
 
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeOperation('-');
+                checkBeforeOperation(getResources().getString(R.string.minus).charAt(0));
             }
         });
 
         multiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeOperation('*');
+                checkBeforeOperation(getResources().getString(R.string.multiply).charAt(0));
             }
         });
 
         divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeOperation('/');
+                checkBeforeOperation(getResources().getString(R.string.divide).charAt(0));
             }
         });
 
         equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBeforeOperation('=');
+                checkBeforeOperation(getResources().getString(R.string.equal).charAt(0));
             }
         });
 
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void checkBeforeDisplay(char digit) {
+    private void checkBeforeDisplay(String digit) {
         removeAnyErrorText();
         exceedLength();
         screen.setText(String.format("%s" + digit, screen.getText().toString()));
