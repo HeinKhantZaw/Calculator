@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private Button one, two, three, four, five, six, seven, eight, nine, zero, dot, plus, minus, multiply, divide, modulus, clear, equal;
     private TextView screen, outputScreen;
-    private double val1;
+    private double val1 = Double.NaN;
     private double val2;
     private char OPERATOR_TYPE;
 
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
     private void operation() {
         if (!Double.isNaN(val1)) {
             val2 = Double.parseDouble(screen.getText().toString());
-
+            Log.d("val", String.valueOf(val1));
             switch (OPERATOR_TYPE) {
                 case '+':
                     val1 = val1 + val2;
